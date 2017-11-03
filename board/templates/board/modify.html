@@ -1,0 +1,68 @@
+<!DOCTYPE html> {% load static %}
+
+<script language="javascript">
+  function writeCheck() {
+    var form = document.writeform;
+
+    if (!form.title.value) {
+      alert("제목을 적어주세요");
+      form.title.focus();
+      return;
+    }
+    if (!form.text.value) {
+      alert("내용을 적어주세요");
+      form.text.focus();
+      return;
+    }
+    form.submit();
+  }
+</script>
+
+<html>
+
+<head>
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.min.css' %}">
+
+  <!-- Custom CSS -->
+  <!--link type="text/css" href="{% static 'board/css/stylish-portfolio.css' %}" rel="stylesheet"-->
+  <link rel="stylesheet" href="{% static 'board/css/post.css' %}">
+
+  <!-- Custom Fonts -->
+  <link href="{% static 'board/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+  <title>게시판 수정하기</title>
+</head>
+
+<body>
+  <header>
+    <h1><a href="/board" style="color:white;">JK Portfolio Blog</a></h1>
+    <h2>Full-Stack Developer &amp; Musik Lover</h2>
+  </header>
+  <article>
+    <form name=writeform action="/board/modiSubmit/" method="post">
+      <input type="hidden" name=post_id value="{{ post_id }}">
+      <h1><input type=text name=title size=50 maxlength=50 value="{{ boardData.post_title }}"></h1>
+      <br>
+      <p><textarea name=text cols=50 rows=10 style="margin: 0px; width: 972px; height: 206px;">{{ boardData.post_text }}</textarea></p>
+    </form>
+    <input type=button value="등록" OnClick="javascript:writeCheck();">
+    <!--tableborder=1 width=1000 cellspacing=0 cellpadding=5>
+        <form name=writeform method=post action="/board/modiSubmit/">
+          <input type=hidden name=post_id  value="{{ post_id }}">
+          <tr>
+            <td><b>제목</b></td>
+            <td><input type=text name=title size=50 maxlength=50 value="{{ boardData.post_title }}"></td>
+          </tr>
+          <tr>
+            <td><b>내용</b></td>
+            <td><textarea name=text cols=50 rows=10>{{ boardData.post_text }}</textarea></td>
+          </tr>
+        </form>
+      </table>
+      <input type=button value="등록" OnClick="javascript:writeCheck();"-->
+  </article>
+</body>
+
+</html>

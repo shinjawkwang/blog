@@ -1,0 +1,83 @@
+<!DOCTYPE html> {% load static %}
+<html>
+  <head>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.min.css' %}">
+
+    <!-- Custom CSS -->
+    <!--link type="text/css" href="{% static 'board/css/stylish-portfolio.css' %}" rel="stylesheet"-->
+    <link rel="stylesheet" href="{% static 'board/css/post.css' %}">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'board/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  </head>
+  <script language="javascript">
+    function boardmodify(){
+        location.href='/board/modify?post_id={{ post_id }}';
+    }
+    function writeCheck() {
+      var form = document.writeform;
+
+      if (!form.username.value) {
+        alert("이름을 적어주세요");
+        form.username.focus();
+        return;
+      }
+      if (!form.text.value) {
+        alert("내용을 적어주세요");
+        form.text.focus();
+        return;
+      }
+      form.submit();
+    }
+  </script>
+  <body>
+		<header>
+			<h1><a href="/board" style="color:white;">JK Portfolio Blog</a></h1><h2>Full-Stack Developer &amp; Musik Lover</h2>
+		</header>
+		<nav>
+      {% if boardList %}
+        <ul>
+          {% for post in boardList %}
+              <li>
+                <a href='/board/hit?post_id={{ post.id }}'>
+                  {{ post.post_title }}
+                </a>
+              </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+		</nav>
+    <div class="modify">
+      <a href="/board/modify?post_id={{ post.id }}">수정</a>
+    </div>
+    <article>
+      <h1>{{ post.post_title }}</h1>
+      <br>
+      <p>{{ post.post_text }}</p>
+    </article>
+    <div class="talk">
+      <h1>댓글</h1>
+      <hr class="talkHr">
+      <br>
+      {% if talkList %}
+        <ol>
+          {% for talk in talkList %}
+            <li align="left">
+              &nbsp {{ talk.talk_username }} : {{ talk.talk_text }} - {{ talk.pub_date }}
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p>아직 댓글이 없습니다. 첫 번째 댓글을 작성해보세요!</p>
+      {% endif %}
+      <form name=writeform action="/board/{{post.post_id}}/talkSubmit/" method="post">
+        <h1><input type=text name=username size=50 maxlength=50 value="글쓴이"></h1>
+        <br>
+        <p><input type=text name=text size=50 maxlength=50 value="댓글을 입력해주세요"></p>
+      </form>
+      <input type=button value="등록" OnClick="javascript:writeCheck();">
+    </div>
+  </body>
+</html>

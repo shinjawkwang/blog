@@ -1,0 +1,81 @@
+header h1{
+	font-size: 20pt;
+}
+article h1{
+	font-size: 20pt;
+}
+h2 {
+	font-size: 18pt;
+}
+p {
+	width: 720px;
+}
+header {
+	font-size: 20pt;
+	border-bottom: 1px solid black;
+	padding: 8px;
+	padding-left: 15px;
+  background-color: #337ab7;
+	color: white;
+}
+header a {
+  color: black;
+}
+header a :hover {
+  color: #fff;
+  background: none;
+}
+nav a {
+	color: black;
+}
+nav a :hover {
+	color: black;
+	background: none;
+}
+nav {
+	font-size: 10pt;
+	border-right: 1px solid black;
+	width: 200px;
+	height: 600px;
+	float: left;
+  padding-top: 40px;
+}
+nav li{
+	margin-bottom: 10px;
+}
+nav ul {
+	list-style: none;
+}
+article {
+	float:left;
+	padding: 20px;
+}
+.talk{
+padding-left: 220px;
+}
+.talk h1 {
+	padding-top: 300px;
+	font-size: 20pt;
+}
+.talk ol{
+	font-size: 0;
+	list-style: inside;
+}
+.talk li{
+	margin: 0;
+	font-size: 10pt;
+	padding-left: 0px;
+	padding-top: 20px;
+}
+hr.talkHr {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border: 0;
+	border-top: 1px solid black;
+	float: left;
+	width: 50px;
+}
+.modify {
+  float: right;
+  padding: 20px;
+}
